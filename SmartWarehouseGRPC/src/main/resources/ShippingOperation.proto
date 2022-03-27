@@ -1,0 +1,46 @@
+
+syntax = "proto3";
+
+option java_package = "ShippingOperations";
+
+option java_multiple_files = true;
+
+option java_outer_classname = "ShippingOperationServiceImpl";
+
+package smartWarehouse;
+
+
+service ShippingService{
+
+
+	rpc shipProduct(stream ShipRequest) returns (ShipResponse) {}
+
+	rpc trackShipment(Day) returns (stream Shipment) {}
+
+}
+
+message ShipRequest{
+	string personName = 1;
+	string address = 2;
+	string productName = 3;
+	int32 quantity = 4;
+	string date = 5;
+	}
+
+//shows how may shipment happened on the current date
+message ShipResponse{
+	string resultMessage = 1;
+}
+
+message Day{
+  	string day = 1;
+}
+
+message Shipment{
+	string address = 1;
+	string productName = 2;
+	int32 quantity = 3;
+	string date = 4;
+}
+
+

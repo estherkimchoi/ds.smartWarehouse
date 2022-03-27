@@ -1,0 +1,41 @@
+
+syntax = "proto3";
+
+option java_package = "grpc.smartWarehouse.pickingOperations";
+
+option java_multiple_files = true;
+
+option java_outer_classname = "PickingOperationServiceProto";
+
+package pickingOperations;
+
+
+service Picking{
+
+	//check bin (storage)location number of items by sku(product number)
+	rpc getBin(BinRequest) returns (BinResponse) {}
+	rpc pickProduct(PickRequest) returns (PickResponse) {}
+
+
+
+}
+message BinRequest{
+	string sku = 1;
+	string productName = 2;
+}
+
+message BinResponse{
+	string bin = 1;
+}
+
+message PickRequest{
+	string bin = 1;
+	string productName = 2;
+	int32 quantity = 3;
+}
+
+message PickResponse{
+	string resultMessage = 1;
+	string pickId = 2;
+}
+
